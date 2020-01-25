@@ -1,13 +1,19 @@
-# @diegoh/template-nodejs
+# @diegoh/api-middleware-response-time
 
-![](https://github.com/diegoh/template-nodejs/workflows/Test/badge.svg) ![](https://github.com/diegoh/template-nodejs/workflows/Security/badge.svg) ![](https://github.com/diegoh/template-nodejs/workflows/Publish/badge.svg)
+![](https://github.com/diegoh/api-middleware-response-time/workflows/Test/badge.svg) ![](https://github.com/diegoh/api-middleware-response-time/workflows/Security/badge.svg) ![](https://github.com/diegoh/api-middleware-response-time/workflows/Publish/badge.svg)
+
+Sets `X-Response-Time` header to the ctx object.
 
 ## Usage
 
 ### Example
 
 ```js
-// Add description
+const responseTime = require('@diegoh/api-middleware-response-time');
+const Koa = require('koa');
+
+const app = new Koa();
+app.use(responseTime());
 ```
 
 ## Development
