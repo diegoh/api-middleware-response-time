@@ -22,7 +22,7 @@
   "homepage": "https://github.com/diegoh/api-middleware-response-time#readme",
   "devDependencies": {
     "@diegoh/eslint-config-node": "^1.0.0",
-    "husky": "^3.1.0",
+    "husky": "^4.2.1",
     "mocha": "^7.0.0",
     "nodemon": "^2.0.2",
     "nyc": "^14.1.1",
