@@ -3,7 +3,7 @@ name: Coverage
 on: push
 
 jobs:
-  build:
+  coverage:
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
+          registry-url: "https://registry.npmjs.org"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
