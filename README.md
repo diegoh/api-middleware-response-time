@@ -1,16 +1,18 @@
 # @diegoh/api-middleware-response-time
 
-![](https://github.com/diegoh/api-middleware-response-time/workflows/Test/badge.svg) ![](https://github.com/diegoh/api-middleware-response-time/workflows/Security/badge.svg) ![](https://github.com/diegoh/api-middleware-response-time/workflows/Publish/badge.svg)
+![Build](https://github.com/diegoh/api-middleware-response-time/workflows/Build/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Package Version](https://img.shields.io/npm/v/@diegoh/api-middleware-response-time)
 
-Sets `X-Response-Time` header to the ctx object.
+Koa middleware to set `X-Response-Time` header.
 
 ## Usage
 
 ### Example
 
 ```js
-const responseTime = require('@diegoh/api-middleware-response-time');
 const Koa = require('koa');
+const responseTime = require('@diegoh/api-middleware-response-time');
 
 const app = new Koa();
 app.use(responseTime());
@@ -21,7 +23,6 @@ app.use(responseTime());
 1. Create a new branch from `master` with a name relevant to the changes you're making. `git branch -b my-new-feature-description`
 2. Push the branch and open a Pull Request (PR).
 3. Request a code review.
-4. **Squash merge** your commits and keep things tidy.
 
 ### Unit Tests
 
@@ -33,11 +34,4 @@ app.use(responseTime());
 
 ### Lint
 
-`npm run lint` or `npm run lint-fix` to automatically fix any linting issues.
-
-### CI/CD
-
-This project uses GitHub actions for CI/CD.
-The following secrets are required to publish this package.
-
-- `NPM_TOKEN`
+`npm run lint` or `npm run lint:fix` to automatically fix any linting issues.

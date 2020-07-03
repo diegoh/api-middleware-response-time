@@ -1,16 +1,17 @@
-name: Security
+name: Build
+
 on:
-  pull_request:
-    branches:
-      - master
+  push:
+    branches-ignore:
+      - 'master'
 
 jobs:
-  security:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12, 13]
+        node-version: [12, 14]
 
     steps:
       - uses: actions/checkout@v1
@@ -19,8 +20,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: "https://registry.npmjs.org"
-          scope: "@diegoh"
+          registry-url: 'https://registry.npmjs.org'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -39,5 +39,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: lint
+        run: npm run lint
+
+      - name: test:unit
+        run: npm run test:unit
+
       - name: audit
-        run: npm audit --registry=https://registry.npmjs.org
+        run: npm audit --production --registry=https://registry.npmjs.org

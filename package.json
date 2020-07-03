@@ -1,32 +1,44 @@
 {
   "name": "@diegoh/api-middleware-response-time",
   "version": "1.0.0",
-  "description": "Template project for node projects",
-  "main": "./src/index.js",
+  "description": "Koa middleware to set `X-Response-Time` header",
+  "prettier": "@diegoh/eslint-config-prettier-typescript-node/src/prettier.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test:unit": "NODE_ENV=test mocha --exit 'src/**/*.spec.js'",
+    "test": "jest",
+    "test:unit": "NODE_ENV=test jest --testPathPattern src",
     "test:unit:watch": "npm run test:unit -- --watch",
-    "test:coverage": "nyc npm run test:unit",
-    "lint": "eslint .",
-    "lint-fix": "eslint . --fix"
+    "test:coverage": "npm run test:unit -- --coverage",
+    "lint": "eslint . --ext ts",
+    "lint:fix": "eslint . --ext ts --fix",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/diegoh/api-middleware-response-time.git"
   },
   "author": "Diego Herrera",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/diegoh/api-middleware-response-time/issues"
   },
   "homepage": "https://github.com/diegoh/api-middleware-response-time#readme",
-  "devDependencies": {
-    "@diegoh/eslint-config-node": "^1.0.0",
-    "husky": "^4.2.1",
-    "mocha": "^7.0.0",
-    "nodemon": "^2.0.2",
-    "nyc": "^15.0.0",
-    "testdouble": "^3.12.4"
+  "dependencies": {
+    "koa": "^2.13.0"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@diegoh/eslint-config-prettier-typescript-node": "^1.1.0",
+    "@shopify/jest-koa-mocks": "^2.2.2",
+    "@diegoh/tsconfig": "^1.0.5",
+    "@types/jest": "^26.0.3",
+    "@types/koa": "^2.11.3",
+    "@types/node": "^13.13.5",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.8.3"
+  }
 }
