@@ -1,16 +1,14 @@
-name: Security
-on:
-  pull_request:
-    branches:
-      - master
+name: Coverage
+
+on: push
 
 jobs:
-  security:
+  coverage:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [12, 13]
+        node-version: [14]
 
     steps:
       - uses: actions/checkout@v1
@@ -20,7 +18,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: "https://registry.npmjs.org"
-          scope: "@diegoh"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -36,8 +33,12 @@ jobs:
 
       - name: dependencies
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: audit
-        run: npm audit --registry=https://registry.npmjs.org
+      - name: Test and Publish Coverage
+        uses: paambaati/codeclimate-action@v2.6.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test:coverage
+          coverageLocations: |
+            ${{github.workspace}}/misc/.coverage/lcov.info:lcov
